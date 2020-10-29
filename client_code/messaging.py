@@ -37,7 +37,7 @@ class Publisher:
     def publish(self, channel, title, content=None):
         message = Message(title, content)
         for handler in self.handlers[channel]:
-            handler(message)
+            handler(message=message)
         if self.with_logging:
             print(
                 f"Published '{message.title}' message on '{channel}' channel to "
