@@ -61,7 +61,7 @@ The publish method also has an optional 'content' argument which can be passed a
 
 ### Subscribe to a Channel
 Also, from anywhere in your app, you can subscribe to a channel on the publisher by
-providing a handler function to process the incoming messages, message.
+providing a handler function to process the incoming messages.
 
 The handler will be passed a Message object, which has the title and content of the
 message as attributes.
