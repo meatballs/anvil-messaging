@@ -12,8 +12,8 @@ messages as required.
 
 ## Installation
 
-  * In your anvil application, create a new module in the client code section and name it 'publisher'
-  * Copy the entire content of `client_code/publisher.py` from this repository into your 'publisher' module
+  * In your anvil application, create a new module in the client code section and name it 'messaging'
+  * Copy the entire content of `client_code/messaging.py` from this repository into your 'messaging' module
 
 ## Usage
 
@@ -25,7 +25,7 @@ For example, you might create a client module at the top level of your app calle
 with the following content:
 
 ```python
-from .publisher import Publisher
+from .messaging import Publisher
 
 publisher = Publisher()
 ```
