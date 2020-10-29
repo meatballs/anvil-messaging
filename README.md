@@ -36,7 +36,7 @@ By default, the publisher will log each message it receieves to your app's logs 
 the output pane if you're in the IDE). You can disable this if you wish:
 
 ```python
-from .publisher import Publisher
+from .messaging import Publisher
 
 publisher = Publisher(with_logging=False)
 ```
