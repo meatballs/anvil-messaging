@@ -77,7 +77,7 @@ from .common import publisher
 class MySubscribingForm(MySubscribingFormTemplate):
     
     def __init__(self, **properties):
-	publisher.subscribe(channel="general", handler=self.general_messages_handler)
+        publisher.subscribe(channel="general", handler=self.general_messages_handler)
         self.init_components(**properties)
 
     def general_messages_handler(self, message):
