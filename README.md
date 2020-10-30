@@ -54,7 +54,7 @@ class MyPublishingForm(MyPublishingFormTemplate):
 
     def __init__(self, **properties):
         publisher.publish(channel="general", title="Hello world")
-	self.init_components(**properties)
+        self.init_components(**properties)
 ```
 
 The publish method also has an optional 'content' argument which can be passed any object.
