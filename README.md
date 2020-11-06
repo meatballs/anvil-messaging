@@ -77,10 +77,20 @@ from .common import publisher
 class MySubscribingForm(MySubscribingFormTemplate):
     
     def __init__(self, **properties):
-	publisher.subscribe(channel="general", handler=self.general_messages_handler)
+	publisher.subscribe(
+	    channel="general", subscriber=self, handler=self.general_messages_handler
+	)
         self.init_components(**properties)
 
     def general_messages_handler(self, message):
 	if message.title = "Hello world":
 	    print(message.title)
 ```
+
+You can unsubscribe from a channel using the publisher's `unsubscribe` method. 
+
+Be sure to do this if you remove instances
+of a form as the publisher will hold references to those instances and the handlers will
+continue to be called.
+
+

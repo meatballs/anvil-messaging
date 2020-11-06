@@ -29,22 +29,33 @@ class Message:
         self.content = content
 
 
+class Subscriber:
+    def __init__(self, subscriber, handler):
+        self.subscriber = subscriber
+        self.handler = handler
+
+
 class Publisher:
     def __init__(self, with_logging=True):
         self.with_logging = with_logging
-        self.handlers = {}
+        self.subscribers = {}
 
     def publish(self, channel, title, content=None):
         message = Message(title, content)
-        for handler in self.handlers[channel]:
-            handler(message=message)
+        for subscriber in self.subscribers[channel]:
+            subscriber.handler(message)
         if self.with_logging:
             print(
                 f"Published '{message.title}' message on '{channel}' channel to "
-                f"{len(self.handlers[channel])} subscriber(s)"
+                f"{len(self.subscribers[channel])} subscriber(s)"
             )
 
-    def subscribe(self, channel, handler):
+    def subscribe(self, channel, subscriber, handler):
         if channel not in self.handlers:
             self.handlers[channel] = []
-        self.handlers[channel].append(handler)
+        self.handlers[channel].append(Subscriber(subscriber, handler))
+
+    def unsubscribe(self, channel, subscriber):
+        self.subscribers[channel] = [
+            s for s in self.subscribers[channel] if s.subscriber == subscriber
+        ]
