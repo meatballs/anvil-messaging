@@ -51,9 +51,9 @@ class Publisher:
             )
 
     def subscribe(self, channel, subscriber, handler):
-        if channel not in self.handlers:
-            self.handlers[channel] = []
-        self.handlers[channel].append(Subscriber(subscriber, handler))
+        if channel not in self.subscribers:
+            self.subscribers[channel] = []
+        self.subscribers[channel].append(Subscriber(subscriber, handler))
 
     def unsubscribe(self, channel, subscriber):
         self.subscribers[channel] = [
