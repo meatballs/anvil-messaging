@@ -42,12 +42,13 @@ class Publisher:
 
     def publish(self, channel, title, content=None):
         message = Message(title, content)
-        for subscriber in self.subscribers[channel]:
+        subscribers = self.subscribers.get(channel, [])
+        for subscriber in subscribers:
             subscriber.handler(message)
         if self.with_logging:
             print(
                 f"Published '{message.title}' message on '{channel}' channel to "
-                f"{len(self.subscribers[channel])} subscriber(s)"
+                f"{len(subscribers)} subscriber(s)"
             )
 
     def subscribe(self, channel, subscriber, handler):
