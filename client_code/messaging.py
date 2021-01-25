@@ -58,6 +58,7 @@ class Publisher:
         self.subscribers[channel].append(Subscriber(subscriber, handler))
 
     def unsubscribe(self, channel, subscriber):
-        self.subscribers[channel] = [
-            s for s in self.subscribers[channel] if s.subscriber == subscriber
-        ]
+        if channel in self.subscribers:
+            self.subscribers[channel] = [
+                s for s in self.subscribers[channel] if s.subscriber == subscriber
+            ]
