@@ -37,16 +37,15 @@ class Subscriber:
 
 
 class Publisher:
-    def __init__(self, with_logging=True):
-        self.with_logging = with_logging
+    def __init__(self):
         self.subscribers = {}
 
-    def publish(self, channel, title, content=None):
+    def publish(self, channel, title, content=None, with_logging=True):
         message = Message(title, content)
         subscribers = self.subscribers.get(channel, [])
         for subscriber in subscribers:
             subscriber.handler(message)
-        if self.with_logging:
+        if with_logging:
             print(
                 f"Published '{message.title}' message on '{channel}' channel to "
                 f"{len(subscribers)} subscriber(s)"
