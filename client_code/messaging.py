@@ -61,3 +61,8 @@ class Publisher:
             self.subscribers[channel] = [
                 s for s in self.subscribers[channel] if s.subscriber == subscriber
             ]
+
+    def close_channel(self, channel):
+        subscribers_count = len(self.subscribers[channel])
+        del self.subscribers[channel]
+        print(f"{channel} closed ({subscribers_count} subscribers)")

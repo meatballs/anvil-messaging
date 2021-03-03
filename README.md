@@ -89,7 +89,9 @@ class MySubscribingForm(MySubscribingFormTemplate):
 
 You can unsubscribe from a channel using the publisher's `unsubscribe` method. 
 
-Be sure to do this if you remove instances
+You can also remove an entire channel using the publisher's `close_channel` method.
+
+Be sure to do one of these if you remove instances
 of a form as the publisher will hold references to those instances and the handlers will
 continue to be called.
 
