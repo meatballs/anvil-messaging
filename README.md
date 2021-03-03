@@ -32,9 +32,6 @@ publisher = Publisher()
 
 and then import that module in your app's startup module/form.
 
-By default, the publisher will log each message it receieves to your app's logs (and
-the output pane if you're in the IDE). You can disable this if you wish:
-
 ```python
 from .messaging import Publisher
 
@@ -57,7 +54,11 @@ class MyPublishingForm(MyPublishingFormTemplate):
         self.init_components(**properties)
 ```
 
-The publish method also has an optional 'content' argument which can be passed any object.
+The publish method also has an optional 'content' parameter which can be passed any object.
+
+By default, the publisher will log each message it receieves to your app's logs (and
+the output pane if you're in the IDE). You can disable this if you wish by passing the
+argument `with_logging=False` to the `publish` method.
 
 ### Subscribe to a Channel
 Also, from anywhere in your app, you can subscribe to a channel on the publisher by
