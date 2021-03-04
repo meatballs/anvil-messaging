@@ -37,10 +37,13 @@ class Subscriber:
 
 
 class Publisher:
-    def __init__(self):
+    def __init__(self, with_logging=True):
+        self.with_logging = with_logging
         self.subscribers = {}
 
-    def publish(self, channel, title, content=None, with_logging=True):
+    def publish(self, channel, title, content=None, with_logging=None):
+        if with_logging is None:
+            with_logging = self.with_logging
         message = Message(title, content)
         subscribers = self.subscribers.get(channel, [])
         for subscriber in subscribers:
@@ -51,18 +54,29 @@ class Publisher:
                 f"{len(subscribers)} subscriber(s)"
             )
 
-    def subscribe(self, channel, subscriber, handler):
+    def subscribe(self, channel, subscriber, handler, with_logging=None):
+        if with_logging is None:
+            with_logging = self.with_logging
         if channel not in self.subscribers:
             self.subscribers[channel] = []
         self.subscribers[channel].append(Subscriber(subscriber, handler))
+        if with_logging:
+            print(f"Added subscriber to {channel} channel")
 
-    def unsubscribe(self, channel, subscriber):
+    def unsubscribe(self, channel, subscriber, with_logging=None):
+        if with_logging is None:
+            with_logging = self.with_logging
         if channel in self.subscribers:
             self.subscribers[channel] = [
                 s for s in self.subscribers[channel] if s.subscriber == subscriber
             ]
+        if with_logging:
+            print(f"Removed subscriber from {channel} channel")
 
-    def close_channel(self, channel):
+    def close_channel(self, channel, with_logging=None):
+        if with_logging is None:
+            with_logging = self.with_logging
         subscribers_count = len(self.subscribers[channel])
         del self.subscribers[channel]
-        print(f"{channel} closed ({subscribers_count} subscribers)")
+        if with_logging:
+            print(f"{channel} closed ({subscribers_count} subscribers)")
