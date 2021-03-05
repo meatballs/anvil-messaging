@@ -1,3 +1,5 @@
+This library is no longer maintained. It has been incorporated into [Anvil Extras](https://github.com/meatballs/anvil-extras).
+
 # Anvil Messaging
 A library for [Anvil Applications](https://anvil.works) that provides publish-subscribe
 messaging.
